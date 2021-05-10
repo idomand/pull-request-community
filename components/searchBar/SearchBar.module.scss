@@ -1,0 +1,49 @@
+@import "../../styles/media";
+.searchContainer {
+  // border: solid red;
+  // background-color: white;
+  padding: 30px;
+}
+
+.searchBar {
+  height: 50px;
+  // border: solid red 0.5px;
+  display: flex;
+  .searchBox {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #808080;
+    border: solid 0.5px #808080;
+    background-color: transparent;
+    border-radius: 5px;
+    text-align: right;
+    margin-left: 15px;
+  }
+  &.searchPeople {
+    color: blue;
+  }
+}
+
+// .search_button {
+//   color: blue ;
+//   background-color: red;
+//   font-size: 24px;
+//   border: solid 0.5px #808080;
+//   border-radius: 5px;
+//   text-align: right;
+//   font-weight: 800;
+//   cursor: pointer;
+// }
+.searchButton {
+  user-select: none;
+  cursor: pointer;
+  color: white;
+  font-size: 2.4rem;
+  border: none;
+  align-items: center;
+  padding: 10px 15px;
+  transition: all 0.3s;
+  border-radius: 4px;
+  background-color: #ce5a55;
+}

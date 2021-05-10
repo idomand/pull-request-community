@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next';
 import Description from '../components/description/Description';
+import SearchBar from '../components/searchBar/SearchBar';
 import Layout from '../components/layout/layout';
 import { PersonCard } from '../components/personCard/personCard';
 import { getPeople, IPerson } from '../services/people';
@@ -13,6 +14,7 @@ export default function Home({ people }: IHomeProps) {
   return (
     <Layout>
       <div className={styles.container}>
+        <SearchBar />
         <Description />
         <div className={styles.cards__wrapper}>
           {people.map((person, i) => (
