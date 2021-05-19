@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 import { GetStaticProps } from 'next';
 import Description from '../components/description/Description';
 import SearchBar from '../components/searchBar/SearchBar';
@@ -11,10 +13,22 @@ interface IHomeProps {
 }
 
 export default function Home({ people }: IHomeProps) {
+  const [peopleToDisplay, setPeopleToDisplay] = useState(people);
+
+  const [searchPrams, setSearchPrams] = useState([]);
+  const callbackFunc = (callbackResult) => {
+    console.log(`callbackResult`, callbackResult);
+    setSearchPrams(callbackResult);
+    console.log(`searchPrams`, searchPrams);
+  };
+
   return (
     <Layout>
       <div className={styles.container}>
-        <SearchBar />
+        <SearchBar callbackFunc={callbackFunc} />
+        <div>{searchPrams[0]}</div>
+        <div>{searchPrams[1] && searchPrams[1][0]}</div>
+
         <Description />
         <div className={styles.cards__wrapper}>
           {people.map((person, i) => (

@@ -1,19 +1,20 @@
-import React, { ReactElement, useState, useRef } from 'react';
+import React, { ReactElement, useState } from 'react';
 import styles from './SearchBar.module.scss';
 import Icon from '@mdi/react';
 import BasicButton from '../buttons/basicButton';
 import Select from 'react-select';
 
-export default function SearchBar(): ReactElement {
+export default function SearchBar({ callbackFunc }): ReactElement {
   const [searchParams, setSearchParams] = useState(null);
   const [social, setSocial] = useState([]);
   const [peopleInputSearch, setPeopleInputSearch] = useState('');
 
   const searchFunction = (e) => {
     e.preventDefault();
-    console.log(`social`, social);
-    console.log('peopleInputSearch :>> ', peopleInputSearch);
+    // console.log(`social`, social);
+    // console.log('peopleInputSearch :>> ', peopleInputSearch);
     setPeopleInputSearch('');
+    callbackFunc([peopleInputSearch, social]);
   };
   /**
    * ?==========================================================================
@@ -21,11 +22,11 @@ export default function SearchBar(): ReactElement {
    * ?==========================================================================
    */
   const socialOptions = [
-    { value: 'גיטהאב ', label: `גיטהאב` },
-    { value: 'לינקאדין', label: 'לינקאדין' },
-    { value: 'טוויטר', label: 'טוויטר' },
-    { value: 'פייסבוק', label: 'פייסבוק' },
-    { value: 'אתר אישי', label: 'אתר אישי' },
+    { value: 'github', label: `גיטהאב` },
+    { value: 'linkedin', label: 'לינקאדין' },
+    { value: 'twitter', label: 'טוויטר' },
+    { value: 'facebook', label: 'פייסבוק' },
+    { value: 'website', label: 'אתר אישי' },
   ];
   const customSelectStyles = {
     option: (provided, state) => ({
