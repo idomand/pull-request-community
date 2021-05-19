@@ -1,40 +1,32 @@
-@import "../../styles/media";
+$newsletterColor: #808080;
+$secondaryColor: #ce5a55;
+
 .searchContainer {
-  // border: solid red;
-  // background-color: white;
   padding: 30px;
 }
 
 .searchBar {
   height: 50px;
-  // border: solid red 0.5px;
   display: flex;
   .searchBox {
     display: flex;
     align-items: center;
     font-size: 24px;
-    color: #808080;
-    border: solid 0.5px #808080;
+    color: $newsletterColor;
+    border: solid 0.5px $newsletterColor;
     background-color: transparent;
     border-radius: 5px;
     text-align: right;
     margin-left: 15px;
+    min-width: 150px;
   }
   &.searchPeople {
     color: blue;
   }
 }
-
-// .search_button {
-//   color: blue ;
-//   background-color: red;
-//   font-size: 24px;
-//   border: solid 0.5px #808080;
-//   border-radius: 5px;
-//   text-align: right;
-//   font-weight: 800;
-//   cursor: pointer;
-// }
+.foo {
+  border: solid red;
+}
 .searchButton {
   user-select: none;
   cursor: pointer;
@@ -45,5 +37,5 @@
   padding: 10px 15px;
   transition: all 0.3s;
   border-radius: 4px;
-  background-color: #ce5a55;
+  background-color: $secondaryColor;
 }

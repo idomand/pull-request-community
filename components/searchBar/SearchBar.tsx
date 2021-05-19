@@ -2,29 +2,57 @@ import React, { ReactElement, useState, useRef } from 'react';
 import styles from './SearchBar.module.scss';
 import Icon from '@mdi/react';
 import BasicButton from '../buttons/basicButton';
-import {
-  mdiFacebook,
-  mdiGithub,
-  mdiLinkedin,
-  mdiTwitter,
-  mdiWeb,
-  mdiStackOverflow,
-  mdiMastodon,
-} from '@mdi/js';
+import Select from 'react-select';
 
-const arrayOfSocialOptions = [{ name: 'linkdin' }];
-
-const renderSocialOptions = () => {};
-
-export default function SearchBar({}: Props): ReactElement {
+export default function SearchBar(): ReactElement {
+  const [searchParams, setSearchParams] = useState(null);
   const [social, setSocial] = useState([]);
   const [peopleInputSearch, setPeopleInputSearch] = useState('');
+
   const searchFunction = (e) => {
     e.preventDefault();
+    console.log(`social`, social);
     console.log('peopleInputSearch :>> ', peopleInputSearch);
-
     setPeopleInputSearch('');
   };
+  /**
+   * ?==========================================================================
+   * ! OPTIONS AND STYLE FOR THE SOCIAL-SELECT COMPONENT ----START-----------------
+   * ?==========================================================================
+   */
+  const socialOptions = [
+    { value: 'גיטהאב ', label: `גיטהאב` },
+    { value: 'לינקאדין', label: 'לינקאדין' },
+    { value: 'טוויטר', label: 'טוויטר' },
+    { value: 'פייסבוק', label: 'פייסבוק' },
+    { value: 'אתר אישי', label: 'אתר אישי' },
+  ];
+  const customSelectStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      borderBottom: '5px dotted black',
+      color: state.isSelected ? 'red' : 'blue',
+      padding: 20,
+    }),
+    control: () => ({
+      backgroundColor: 'transparent',
+      fontSize: '24px',
+      width: '100%',
+      height: '100%',
+      cursor: 'pointer',
+      display: 'flex',
+    }),
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = 'opacity 300ms';
+      return { ...provided, opacity, transition };
+    },
+  };
+  /**
+   * ?==========================================================================
+   * ! OPTIONS AND STYLE FOR THE SOCIAL-SELECT COMPONENT -----END-----------------
+   * ?==========================================================================
+   */
 
   return (
     <div className={styles.searchContainer}>
@@ -40,8 +68,20 @@ export default function SearchBar({}: Props): ReactElement {
             placeholder="חיפוש אנשים ..."
           />
           <div className={styles.searchBox}>שפות</div>
-
-          <div className={styles.searchBox}>סושיאל</div>
+          <Select
+            placeholder={'סושיאל'}
+            className={styles.searchBox}
+            isMulti
+            defaultValue={social}
+            onChange={(e) => {
+              setSocial([]);
+              e.forEach((element) => {
+                setSocial((social) => [...social, element.value]);
+              });
+            }}
+            options={socialOptions}
+            styles={customSelectStyles}
+          />
           <input
             value="חיפוש"
             type="submit"
